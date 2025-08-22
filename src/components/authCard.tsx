@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { FaGithub } from "react-icons/fa";
 
 export default function AuthCard() {
   const [authMethod, setAuthMethod] = useState("register");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter();
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,6 +34,7 @@ export default function AuthCard() {
       },
       body: JSON.stringify({ email, password }),
     });
+    router.push("/auth-status");
     return response;
   };
 
@@ -62,14 +68,25 @@ export default function AuthCard() {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             ></input>
-            <button className="text-white bg-turquesa hover:bg-roxo active:bg-roxo-escuro p-3 px-10 rounded-md cursor-pointer">
+            <button className="text-white bg-turquesa hover:bg-roxo active:bg-roxo-escuro p-3 px-10 rounded-md cursor-pointer transition duration-200">
               Start Now!
+            </button>
+            <button
+              className="flex items-center gap-5 cursor-pointer bg-black hover:bg-grafite text-white px-15 py-2 transition duration-200"
+              onClick={() =>
+                signIn("github", {
+                  callbackUrl: "http://localhost:3000/auth-status",
+                })
+              }
+            >
+              <FaGithub size={25} />
+              Sign in with GitHub
             </button>
             <p
               onClick={() => {
                 setAuthMethod("login");
               }}
-              className="cursor-pointer hover:text-turquesa"
+              className="cursor-pointer hover:text-turquesa transition duration-200"
             >
               Already have an account?{" "}
             </p>
