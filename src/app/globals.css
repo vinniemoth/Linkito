@@ -12,6 +12,17 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --color-turquesa: #00bfa6;
+  --color-grafite: #1f2937;
+  --color-roxo: #7c3aed;
+  --color-roxo-escuro: #5b21b6;
+  --color-cinza-100: #f9fafb;
+  --color-cinza-200: #f9fafb;
+  --color-cinza-300: #6b7280;
+  --color-cinza-400: #374151;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -22,5 +33,4 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
