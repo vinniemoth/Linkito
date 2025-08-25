@@ -22,7 +22,6 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
 
     const result = await signIn("credentials", {
       redirect: false,
@@ -33,11 +32,12 @@ export default function LoginPage() {
       switch (result?.error) {
         case "CredentialsSignin":
           setError("Invalid Email or Password.");
-          notify(true, error);
+          console.log(error);
+          notify(true, "Invalid Email or Password.");
           break;
         default:
           setError("Internal Server Error.");
-          notify(true, error);
+          notify(true, "Internal Server Error.");
       }
     } else {
       notify(false, "User logged in successfully. Redirecting to dashboard...");
