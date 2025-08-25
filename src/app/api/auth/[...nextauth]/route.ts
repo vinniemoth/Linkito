@@ -13,19 +13,19 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing credentials");
+          return null;
         }
+
         const user = await getUniqueUser(credentials.email);
         if (!user) {
-          console.log(user);
-          throw new Error("Wrong credentials");
+          return null;
         }
         const passwordMatch = await bcrypt.compare(
           credentials.password,
           user[0].password
         );
         if (!passwordMatch) {
-          throw new Error("Wrong credentials");
+          return null;
         }
         return {
           id: user[0].id,

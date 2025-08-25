@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
+  const { data: session, status } = useSession();
+
   return (
     <div className="bg-[#1F2937] p-5 px-10 flex justify-between items-center">
       <div>
@@ -21,11 +23,22 @@ export default function Header() {
           Plans & Prices
         </button>
         <button className="cursor-pointer hover:text-turquesa">Help</button>
-        <Link href="/auth">
-          <button className="cursor-pointer bg-roxo rounded-md p-2 hover:bg-linear-to-l hover:from-roxo hover:to-turquesa transition duration-200 ease-in-out">
-            Create Account
-          </button>
-        </Link>
+        {!session ? (
+          <Link href="/auth/register">
+            <button className="cursor-pointer bg-roxo rounded-md p-2 hover:bg-linear-to-l hover:from-roxo hover:to-turquesa transition duration-200 ease-in-out">
+              Create Account
+            </button>
+          </Link>
+        ) : (
+          <Link href="/">
+            <button
+              onClick={() => signOut({ redirect: false })}
+              className="cursor-pointer bg-roxo rounded-md p-2 hover:bg-linear-to-l hover:from-roxo hover:to-turquesa transition duration-200 ease-in-out"
+            >
+              Logout
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

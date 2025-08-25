@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -10,6 +11,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+
+  const notify = (error: boolean, message: string) => {
+    if (error) {
+      toast.error(message);
+    } else {
+      toast.success(message);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,11 +29,21 @@ export default function LoginPage() {
       email,
       password,
     });
-
-    if (result?.error) {
-      setError("Email ou senha inválidos");
+    if (!result?.ok) {
+      switch (result?.error) {
+        case "CredentialsSignin":
+          setError("Invalid Email or Password.");
+          notify(true, error);
+          break;
+        default:
+          setError("Internal Server Error.");
+          notify(true, error);
+      }
     } else {
-      router.push("/dashboard"); // redireciona após login
+      notify(false, "User logged in successfully. Redirecting to dashboard...");
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 2000);
     }
   };
 
@@ -42,7 +61,6 @@ export default function LoginPage() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
             className="w-full p-2 border rounded mb-4 outline-0 focus:ring-2 focus:ring-turquesa text-grafite border-turquesa"
           />
 
@@ -51,13 +69,12 @@ export default function LoginPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
             className="w-full p-2 border rounded mb-6 outline-0 focus:ring-2 focus:ring-turquesa text-grafite border-turquesa"
           />
 
           <button
             type="submit"
-            className="w-full bg-roxo text-white p-2 rounded hover:bg-roxo-escuro"
+            className="w-full bg-roxo text-white p-2 rounded hover:bg-roxo-escuro cursor-pointer"
           >
             Login
           </button>
@@ -70,6 +87,17 @@ export default function LoginPage() {
           Doesn't have an account?
         </Link>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick={true}
+        rtl={false}
+        draggable
+        theme="light"
+        transition={Bounce}
+      />
     </div>
   );
 }

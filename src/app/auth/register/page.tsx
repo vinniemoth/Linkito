@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +42,10 @@ export default function LoginPage() {
         notify(true, "Email already exists");
         break;
       case "SUCESS":
-        notify(false, "User created successfully");
+        notify(
+          false,
+          "User created successfully. Redirecting to login page..."
+        );
         setTimeout(() => {
           router.push("/auth/login");
         }, 2000);
@@ -88,7 +91,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-roxo text-white p-2 rounded hover:bg-roxo-escuro"
+            className="w-full bg-roxo text-white p-2 rounded hover:bg-roxo-escuro cursor-pointer"
           >
             Start
           </button>
