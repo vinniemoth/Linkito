@@ -34,13 +34,13 @@ export default function AuthCard() {
       },
       body: JSON.stringify({ email, password }),
     });
-    router.push("/auth-status");
+    router.push("/dashboard");
     return response;
   };
 
   return (
     <div className="bg-white text-cinza-400 border-2 border-solid border-cinza-200 shadow-lg rounded-lg w-1/2 m-20 p-8 flex flex-col items-center gap-3">
-      {authMethod === "register" ? (
+      {/* {authMethod === "register" ? (
         <>
           <h2 className="text-lg">Create Account</h2>
           <form
@@ -75,7 +75,7 @@ export default function AuthCard() {
               className="flex items-center gap-5 cursor-pointer bg-black hover:bg-grafite text-white px-15 py-2 transition duration-200"
               onClick={() =>
                 signIn("github", {
-                  callbackUrl: "http://localhost:3000/auth-status",
+                  callbackUrl: "http://localhost:3000/dashboard",
                 })
               }
             >
@@ -126,7 +126,8 @@ export default function AuthCard() {
             </p>
           </form>
         </>
-      )}
+      )} */}
+      <button onClick={() => signIn()}>Sign in</button>;
     </div>
   );
 }

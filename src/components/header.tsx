@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 export default function Header() {
   return (
@@ -9,9 +11,12 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex gap-5">
-        <button className="cursor-pointer hover:text-turquesa">
-          Dashboard
-        </button>
+        <Link
+          href="/dashboard"
+          className="hover:text-turquesa flex items-center"
+        >
+          <button className="cursor-pointer">Dashboard</button>
+        </Link>
         <button className="cursor-pointer hover:text-turquesa">
           Plans & Prices
         </button>
