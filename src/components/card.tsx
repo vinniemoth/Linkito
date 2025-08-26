@@ -11,7 +11,7 @@ export default function Card() {
     <div className="w-1/3 bg-white border-cinza-300 border-solid border-1 shadow-lg flex flex-col items-center rounded-lg gap-5 p-5 my-20">
       <h3 className="text-md text-grafite">Paste your link below</h3>
       <input
-        className="bg-white border-solid w-2/3 border-cinza-300 border-1 focus:border-turquesa focus:ring-1 focus:ring-turquesa text-grafite placeholder:text-cinza-300 outline-none focus:shadow-[0_0_3px_turquesa] focus:shadow-turquesa"
+        className="bg-white border-solid w-2/3 border-cinza-300 border-1 focus:border-turquesa-100 focus:ring-1 focus:ring-turquesa-100 text-grafite placeholder:text-cinza-300 outline-none focus:shadow-[0_0_3px_turquesa-100] focus:shadow-turquesa-100"
         placeholder="Enter your loooong URL here"
         onChange={(e) => setLink(e.target.value)}
         value={link}
@@ -19,7 +19,7 @@ export default function Card() {
       />
       <button
         onClick={() => setShowLink(!showLink)}
-        className="bg-turquesa hover:bg-roxo active:bg-roxo-escuro text-2xl p-3 rounded-lg transition duration-200 cursor-pointer"
+        className="bg-turquesa-100 hover:bg-roxo active:bg-roxo-escuro text-2xl p-3 rounded-lg transition duration-200 cursor-pointer"
       >
         Create Linkito
       </button>

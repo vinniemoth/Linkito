@@ -48,27 +48,27 @@ export default function AuthCard() {
             className="flex flex-col w-full h-full justify-center items-center gap-3"
           >
             <input
-              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa focus:ring-turquesa focus:ring-2 outline-0"
+              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa-100 focus:ring-turquesa-100 focus:ring-2 outline-0"
               type="text"
               placeholder="Name"
               onChange={(e) => setName(e.target.value)}
               value={name}
             ></input>
             <input
-              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa focus:ring-turquesa focus:ring-2 outline-0"
+              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa-100 focus:ring-turquesa-100 focus:ring-2 outline-0"
               type="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             ></input>
             <input
-              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa focus:ring-turquesa focus:ring-2 outline-0"
+              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa-100 focus:ring-turquesa-100 focus:ring-2 outline-0"
               type="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             ></input>
-            <button className="text-white bg-turquesa hover:bg-roxo active:bg-roxo-escuro p-3 px-10 rounded-md cursor-pointer transition duration-200">
+            <button className="text-white bg-turquesa-100 hover:bg-roxo active:bg-roxo-escuro p-3 px-10 rounded-md cursor-pointer transition duration-200">
               Start Now!
             </button>
             <button
@@ -86,7 +86,7 @@ export default function AuthCard() {
               onClick={() => {
                 setAuthMethod("login");
               }}
-              className="cursor-pointer hover:text-turquesa transition duration-200"
+              className="cursor-pointer hover:text-turquesa-100 transition duration-200"
             >
               Already have an account?{" "}
             </p>
@@ -100,27 +100,27 @@ export default function AuthCard() {
             className="flex flex-col w-full h-full justify-center items-center gap-3"
           >
             <input
-              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa focus:ring-turquesa focus:ring-2 outline-0"
+              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa-100 focus:ring-turquesa-100 focus:ring-2 outline-0"
               type="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             ></input>
             <input
-              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa focus:ring-turquesa focus:ring-2 outline-0"
+              className="w-2/3 border-1 border-solid border-cinza-400 focus:border-turquesa-100 focus:ring-turquesa-100 focus:ring-2 outline-0"
               type="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             ></input>
-            <button className="text-white bg-turquesa hover:bg-roxo active:bg-roxo-escuro p-3 px-10 rounded-md cursor-pointer">
+            <button className="text-white bg-turquesa-100 hover:bg-roxo active:bg-roxo-escuro p-3 px-10 rounded-md cursor-pointer">
               Start Now!
             </button>
             <p
               onClick={() => {
                 setAuthMethod("register");
               }}
-              className="cursor-pointer hover:text-turquesa"
+              className="cursor-pointer hover:text-turquesa-100"
             >
               Don't have an account?{" "}
             </p>

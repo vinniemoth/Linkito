@@ -13,7 +13,8 @@
 }
 
 @theme {
-  --color-turquesa: #00bfa6;
+  --color-turquesa-100: #00bfa6;
+  --color-turquesa-200: #009c87;
   --color-grafite: #1f2937;
   --color-roxo: #7c3aed;
   --color-roxo-escuro: #5b21b6;
@@ -23,7 +24,7 @@
   --color-cinza-400: #374151;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;

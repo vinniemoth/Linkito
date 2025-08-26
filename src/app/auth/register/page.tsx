@@ -75,7 +75,7 @@ export default function RegisterPage() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 border rounded mb-4 outline-0 focus:ring-2 focus:ring-turquesa text-grafite border-turquesa"
+            className="w-full p-2 border rounded mb-4 outline-0 focus:ring-2 focus:ring-turquesa-100 text-grafite border-turquesa-100"
           />
 
           <label className="block mb-2 text-grafite">Email</label>
@@ -83,7 +83,7 @@ export default function RegisterPage() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border rounded mb-4 outline-0 focus:ring-2 focus:ring-turquesa text-grafite border-turquesa"
+            className="w-full p-2 border rounded mb-4 outline-0 focus:ring-2 focus:ring-turquesa-100 text-grafite border-turquesa-100"
           />
 
           <label className="block mb-2 text-grafite">Password</label>
@@ -91,7 +91,7 @@ export default function RegisterPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border rounded mb-6 outline-0 focus:ring-2 focus:ring-turquesa text-grafite border-turquesa"
+            className="w-full p-2 border rounded mb-6 outline-0 focus:ring-2 focus:ring-turquesa-100 text-grafite border-turquesa-100"
           />
 
           <button

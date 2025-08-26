@@ -13,23 +13,23 @@ export default function Header() {
     >
       <div>
         <Link href={"/"}>
-          <h1 className="text-turquesa text-2xl">Linkito</h1>
+          <h1 className="text-turquesa-100 text-2xl">Linkito</h1>
         </Link>
       </div>
       <div className="flex gap-5">
         <Link
           href="/dashboard"
-          className="hover:text-turquesa flex items-center"
+          className="hover:text-turquesa-100 flex items-center"
         >
           <button className="cursor-pointer">Dashboard</button>
         </Link>
-        <button className="cursor-pointer hover:text-turquesa">
+        <button className="cursor-pointer hover:text-turquesa-100">
           Plans & Prices
         </button>
-        <button className="cursor-pointer hover:text-turquesa">Help</button>
+        <button className="cursor-pointer hover:text-turquesa-100">Help</button>
         {!session ? (
           <Link href="/auth/register">
-            <button className="cursor-pointer bg-roxo rounded-md p-2 hover:bg-linear-to-l hover:from-roxo hover:to-turquesa transition duration-200 ease-in-out">
+            <button className="cursor-pointer bg-roxo rounded-md p-2 hover:bg-linear-to-l hover:from-roxo hover:to-turquesa-100 transition duration-200 ease-in-out">
               Create Account
             </button>
           </Link>
@@ -37,7 +37,7 @@ export default function Header() {
           <Link href="/">
             <button
               onClick={() => signOut({ redirect: false })}
-              className="cursor-pointer bg-roxo rounded-md p-2 hover:bg-linear-to-l hover:from-roxo hover:to-turquesa transition duration-200 ease-in-out"
+              className="cursor-pointer bg-roxo rounded-md p-2 hover:bg-linear-to-l hover:from-roxo hover:to-turquesa-100 transition duration-200 ease-in-out"
             >
               Logout
             </button>
