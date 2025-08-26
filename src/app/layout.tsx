@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { montserrat } from "@/fonts/fonts";
 import "./globals.css";
 import Header from "@/components/header";
 import Providers from "@/providers/Providers";
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Linkito URL Shortener",

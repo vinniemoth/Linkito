@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     }
     const existingUser = await getUniqueUser(email);
 
-    if (existingUser) {
+    if (existingUser.length === 1) {
       return NextResponse.json({
         message: "Account with this email already exists",
         CODE: "EXISTING_EMAIL",
@@ -24,6 +24,8 @@ export async function POST(req: NextRequest) {
 
     const encryptedPassword = await bcrypt.hash(password, 10);
     await createUser(uuidv4(), name, email, encryptedPassword);
+    console.log(name, email, encryptedPassword);
+
     return NextResponse.json({
       message: "User created successfully",
       CODE: "SUCCESS",

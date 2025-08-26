@@ -1,12 +1,16 @@
 "use client";
+
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
+import { montserrat } from "@/fonts/fonts";
 
 export default function Header() {
   const { data: session, status } = useSession();
 
   return (
-    <div className="bg-[#1F2937] p-5 px-10 flex justify-between items-center">
+    <header
+      className={`${montserrat.variable} bg-[#1F2937] p-5 px-10 flex justify-between items-center`}
+    >
       <div>
         <Link href={"/"}>
           <h1 className="text-turquesa text-2xl">Linkito</h1>
@@ -40,6 +44,6 @@ export default function Header() {
           </Link>
         )}
       </div>
-    </div>
+    </header>
   );
 }

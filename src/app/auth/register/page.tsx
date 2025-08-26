@@ -32,6 +32,7 @@ export default function RegisterPage() {
       },
       body: JSON.stringify({ name, email, password }),
     });
+
     const json = await response.json();
 
     switch (json.CODE) {
@@ -41,11 +42,15 @@ export default function RegisterPage() {
       case "EXISTING_EMAIL":
         notify(true, "Email already exists");
         break;
-      case "SUCESS":
+      case "SUCCESS":
         notify(
           false,
           "User created successfully. Redirecting to login page..."
         );
+        setEmail("");
+        setName("");
+        setPassword("");
+
         setTimeout(() => {
           router.push("/auth/login");
         }, 2000);
