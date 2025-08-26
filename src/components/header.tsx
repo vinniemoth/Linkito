@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header
-      className={`${montserrat.variable} bg-[#1F2937] p-5 px-10 flex justify-between items-center`}
+      className={`${montserrat.variable} bg-[#1F2937] text-white p-5 px-10 flex justify-between items-center`}
     >
       <div>
         <Link href={"/"}>
