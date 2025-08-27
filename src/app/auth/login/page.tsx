@@ -32,7 +32,6 @@ export default function LoginPage() {
       switch (result?.error) {
         case "CredentialsSignin":
           setError("Invalid Email or Password.");
-          console.log(error);
           notify(true, "Invalid Email or Password.");
           break;
         default:

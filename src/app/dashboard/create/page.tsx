@@ -1,15 +1,53 @@
 "use client";
 import BackButton from "@/components/backButton";
+import { useState } from "react";
+import { nanoid } from "nanoid";
+import { useSession } from "next-auth/react";
+import { FaCopy } from "react-icons/fa";
 
 export default function Create() {
+  const { data: session } = useSession();
+  const [link, setLink] = useState("");
+  const [savedLink, setSavedLink] = useState("");
+  const [shortId, setShortId] = useState("");
+  const [shortLink, setShortLink] = useState("");
+  const [showLink, setShowLink] = useState(false);
+
+  const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+    if (session) {
+      const email = session.user?.email;
+      e.preventDefault();
+      const id = nanoid(7);
+      setShowLink(true);
+      setShortLink(`https://linkito.com/${id}`);
+      setSavedLink(link);
+      setLink("");
+      const response = await fetch("/api/links/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ link, shortId: id, email }),
+      });
+
+      const json = await response.json();
+      return json;
+    }
+  };
+
   return (
     <div>
-      <BackButton />
+      <BackButton to="/dashboard" />
       <div className="flex flex-col items-center h-screen">
         <div className="flex flex-col w-2/3 h-2/3 justify-center items-center gap-5 shadow-2xl">
           <h3 className="text-2xl text-grafite">Create your Linkito</h3>
-          <form className="flex flex-col w-1/3 gap-5">
+          <form
+            className="flex flex-col w-1/3 gap-5"
+            onSubmit={(e) => handleCreate(e)}
+          >
             <input
+              onChange={(e) => setLink(e.target.value)}
+              value={link}
               type="url"
               className="outline-none ring-2 ring-turquesa-100 h-8 rounded-sm"
               placeholder="Enter your loooong URL here"
@@ -18,6 +56,20 @@ export default function Create() {
               Create
             </button>
           </form>
+          {showLink && (
+            <div className="bg-cinza-100 border-solid border-1 border-cinza-200 p-2 flex flex-col items-center">
+              <div className="flex justify-between items-center gap-2">
+                <p className="text-grafite text-2xl">{shortLink}</p>
+
+                <FaCopy
+                  size={30}
+                  onClick={() => navigator.clipboard.writeText(shortLink)}
+                  className="cursor-pointer text-white bg-turquesa-100 p-2 rounded-md active:bg-turquesa-200"
+                />
+              </div>
+              <small className="text-cinza-300">{savedLink}</small>
+            </div>
+          )}
         </div>
       </div>
     </div>

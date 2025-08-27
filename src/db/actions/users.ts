@@ -25,6 +25,5 @@ export const getUniqueUser = async (email: string) => {
     .select()
     .from(usersTable)
     .where(and(eq(usersTable.email, email)));
-  console.log("oi");
   return result;
 };

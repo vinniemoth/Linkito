@@ -24,7 +24,6 @@ export async function POST(req: NextRequest) {
 
     const encryptedPassword = await bcrypt.hash(password, 10);
     await createUser(uuidv4(), name, email, encryptedPassword);
-    console.log(name, email, encryptedPassword);
 
     return NextResponse.json({
       message: "User created successfully",
