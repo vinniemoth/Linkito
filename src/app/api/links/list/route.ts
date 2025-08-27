@@ -1,9 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authOptions as Auth } from "@/app/api/auth/[...nextauth]/route";
 import { NextResponse } from "next/server";
-import { db } from "@/db/db";
-import { linksTable } from "@/db/schema/links";
-import { eq } from "drizzle-orm";
 import { getUniqueUser } from "@/db/actions/users";
 import { fetchLink } from "@/db/actions/links";
 

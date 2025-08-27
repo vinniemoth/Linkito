@@ -1,7 +1,6 @@
 "use client";
 import BackButton from "@/components/backButton";
 import { useState } from "react";
-import { nanoid } from "nanoid";
 import { useSession } from "next-auth/react";
 import { FaCopy } from "react-icons/fa";
 
@@ -14,24 +13,27 @@ export default function Create() {
   const [showLink, setShowLink] = useState(false);
 
   const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (session) {
       const email = session.user?.email;
-      e.preventDefault();
-      const id = nanoid(7);
-      setShowLink(true);
-      setShortLink(`https://linkito.com/${id}`);
-      setSavedLink(link);
-      setLink("");
       const response = await fetch("/api/links/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ link, shortId: id, email }),
+        body: JSON.stringify({ link, email }),
       });
 
       const json = await response.json();
-      return json;
+      console.log(json);
+      {
+        setShowLink(true);
+        setShortLink(`https://linkito.com/${json.shortId}`);
+        setSavedLink(link);
+        setLink("");
+
+        return json;
+      }
     }
   };
 

@@ -34,11 +34,11 @@ export default function Links() {
       <BackButton to="/dashboard" />
       <div className="flex flex-col items-center h-screen">
         <h1 className="text-3xl font-bold">Links Created</h1>
-        <div className="grid grid-cols-3 gap-10 m-5">
+        <div className="grid grid-cols-3 gap-10 py-10">
           {links.map((link: Link) => (
             <div
               key={link.shortId}
-              className="flex flex-col ring-2 ring-turquesa-100 p-5 h-50 items-center justify-center gap-5 shadow-lg rounded-lg"
+              className="flex flex-col ring-2 ring-turquesa-100 p-5 h-50 items-center justify-center gap-5 shadow-lg rounded-lg m-3"
             >
               <p className="text-turquesa-100 text-2xl font-bold">
                 http://linkito.com/{link.shortId}

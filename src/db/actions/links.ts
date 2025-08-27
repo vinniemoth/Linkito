@@ -20,6 +20,14 @@ export const createLink = async (
   return result;
 };
 
+export const checkLink = async (id: string) => {
+  const result = await db
+    .select()
+    .from(linksTable)
+    .where(eq(linksTable.shortId, id));
+  return result;
+};
+
 export const fetchLink = async (id: string) => {
   const result = await db
     .select()
