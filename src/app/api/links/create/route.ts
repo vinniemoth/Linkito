@@ -9,7 +9,14 @@ export async function POST(req: NextRequest) {
 
   try {
     if (!link) {
-      return { error: "Link is required", CODE: "NO_LINK" };
+      return NextResponse.json({ error: "Link is required", CODE: "NO_LINK" });
+    }
+
+    if (!alias) {
+      return NextResponse.json({
+        error: "Name for link is required",
+        CODE: "NO_ALIAS",
+      });
     }
 
     const user = await getUniqueUser(email);

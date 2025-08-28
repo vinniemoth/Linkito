@@ -3,6 +3,7 @@ import BackButton from "@/components/backButton";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { FaCopy } from "react-icons/fa";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 export default function Create() {
   const { data: session } = useSession();
@@ -11,6 +12,14 @@ export default function Create() {
   const [savedLink, setSavedLink] = useState("");
   const [shortLink, setShortLink] = useState("");
   const [showLink, setShowLink] = useState(false);
+  const [error, setError] = useState("");
+  const notify = (error: boolean, message: string) => {
+    if (error) {
+      toast.error(message);
+    } else {
+      toast.success(message);
+    }
+  };
 
   const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,12 +34,16 @@ export default function Create() {
       });
 
       const json = await response.json();
-      console.log(json);
-      {
+      if (json.CODE !== "SUCCESS") {
+        setError(json.error);
+        notify(true, json.error);
+      } else {
+        notify(false, json.message);
         setShowLink(true);
         setShortLink(`https://linkito.com/${json.shortId}`);
         setSavedLink(link);
         setLink("");
+        setAlias("");
 
         return json;
       }
@@ -81,6 +94,17 @@ export default function Create() {
           )}
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick={true}
+        rtl={false}
+        draggable
+        theme="light"
+        transition={Bounce}
+      />
     </div>
   );
 }

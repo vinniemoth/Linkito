@@ -1,4 +1,5 @@
 import { getOriginalLink } from "@/db/actions/links";
+import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -9,8 +10,9 @@ export async function GET(
 
   const link = await getOriginalLink(params.id);
   if (!link || !link.originalUrl) {
-    return NextResponse.json({ error: "Link not found", CODE: "NOT_FOUND" });
+    const url = new URL("/not-found", req.url);
+    return NextResponse.redirect(url, 302);
   } else {
-    return NextResponse.json({ link, CODE: "SUCESS" });
+    return NextResponse.redirect(link.originalUrl, 302);
   }
 }
