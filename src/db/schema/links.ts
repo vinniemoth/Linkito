@@ -3,6 +3,7 @@ import { usersTable } from "./user";
 
 export const linksTable = sqliteTable("links", {
   id: text().primaryKey().unique(),
+  alias: text().notNull(),
   shortId: text().notNull().unique(),
   originalUrl: text().notNull(),
   authorId: text()

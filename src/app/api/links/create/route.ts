@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 
 export async function POST(req: NextRequest) {
-  const { link, email } = await req.json();
+  const { alias, link, email } = await req.json();
 
   try {
     if (!link) {
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
       existingLink = await checkLink(shortId);
     } while (existingLink.length !== 0);
 
-    await createLink(uuidv4(), shortId, link, user[0].id);
+    await createLink(uuidv4(), alias, shortId, link, user[0].id);
     console.log(shortId);
 
     return NextResponse.json({

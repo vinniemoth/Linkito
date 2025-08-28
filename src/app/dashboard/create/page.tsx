@@ -7,8 +7,8 @@ import { FaCopy } from "react-icons/fa";
 export default function Create() {
   const { data: session } = useSession();
   const [link, setLink] = useState("");
+  const [alias, setAlias] = useState("");
   const [savedLink, setSavedLink] = useState("");
-  const [shortId, setShortId] = useState("");
   const [shortLink, setShortLink] = useState("");
   const [showLink, setShowLink] = useState(false);
 
@@ -21,7 +21,7 @@ export default function Create() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ link, email }),
+        body: JSON.stringify({ alias, link, email }),
       });
 
       const json = await response.json();
@@ -47,6 +47,13 @@ export default function Create() {
             className="flex flex-col w-1/3 gap-5"
             onSubmit={(e) => handleCreate(e)}
           >
+            <input
+              onChange={(e) => setAlias(e.target.value)}
+              value={alias}
+              type="text"
+              className="outline-none ring-2 ring-turquesa-100 h-8 rounded-sm"
+              placeholder="Enter a name for the link here"
+            />
             <input
               onChange={(e) => setLink(e.target.value)}
               value={link}

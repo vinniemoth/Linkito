@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface Link {
+  alias: string;
   shortId: string;
   originalUrl: string;
 }
@@ -38,15 +39,16 @@ export default function Links() {
           {links.map((link: Link) => (
             <div
               key={link.shortId}
-              className="flex flex-col ring-2 ring-turquesa-100 p-5 h-50 items-center justify-center gap-5 shadow-lg rounded-lg m-3"
+              className="flex flex-col ring-2 ring-turquesa-100 py-10 px-5 items-center justify-center gap-5 shadow-lg rounded-lg m-3"
             >
+              <h2 className="text-2xl font-bold">{link.alias}</h2>
               <p className="text-turquesa-100 text-2xl font-bold">
-                http://linkito.com/{link.shortId}
+                http://localhost:3000/{link.shortId}
               </p>
-              <small>{link.originalUrl}</small>
+              <small className="text-center">{link.originalUrl}</small>
               <button
                 onClick={() => {
-                  router.push(`http://linkito.com/${link.shortId}`);
+                  router.push(`http://localhost:3000/${link.shortId}`);
                 }}
                 className="bg-turquesa-100 hover:bg-roxo active:bg-roxo-escuro text-xl p-3 rounded-lg transition duration-200 cursor-pointer"
               >
